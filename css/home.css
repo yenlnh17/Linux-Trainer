@@ -1,0 +1,160 @@
+/* ── Lessons page content ────────────────────────────────── */
+.lessons-content {
+    padding: 48px 56px 80px;
+    background: var(--bg);
+}
+.lessons-header {
+    margin-bottom: 32px;
+    max-width: 880px;
+}
+.lessons-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text);
+}
+
+/* ── Module grid ─────────────────────────────────────────── */
+#mod-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 860px;
+}
+
+/* ── Module card ─────────────────────────────────────────── */
+.mod-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    border-radius: var(--r2);
+    padding: 22px 20px 18px;
+    text-decoration: none;
+    color: inherit;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        transform 0.15s;
+    position: relative;
+    overflow: hidden;
+}
+a.mod-card:hover {
+    border-color: var(--green);
+    box-shadow: 0 4px 20px rgba(180, 68, 70, 0.15);
+    transform: translateY(-2px);
+}
+a.mod-card:active {
+    transform: translateY(0);
+}
+
+.mod-card.card-locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.mod-card.card-soon {
+    opacity: 0.7;
+    cursor: default;
+}
+
+/* Diagonal stripe overlay for locked cards */
+.mod-card.card-locked::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 8px,
+        rgba(180, 68, 70, 0.04) 8px,
+        rgba(180, 68, 70, 0.04) 16px
+    );
+    pointer-events: none;
+}
+
+.mod-badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+.mod-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+}
+.mod-cmds {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text3);
+    letter-spacing: 0.02em;
+}
+.mod-desc {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.6;
+    flex: 1;
+    margin-top: 2px;
+}
+
+/* ── In-card progress bar ────────────────────────────────── */
+.mod-progress-bar {
+    height: 3px;
+    background: var(--bg4);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+.mod-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green2), var(--cyan));
+    border-radius: 999px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Status line ─────────────────────────────────────────── */
+.mod-status {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+}
+.open-status {
+    color: var(--green);
+}
+.progress-status {
+    color: var(--text2);
+}
+.done-status {
+    color: var(--green);
+}
+.locked-status {
+    color: var(--text4);
+}
+.soon-status {
+    color: var(--amber);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 700px) {
+    #mod-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+    }
+    .lessons-content {
+        padding: 24px 16px 60px;
+    }
+}
+@media (min-width: 701px) and (max-width: 900px) {
+    #mod-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .lessons-content {
+        padding: 32px 28px 60px;
+    }
+}

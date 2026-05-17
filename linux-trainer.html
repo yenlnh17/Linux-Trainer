@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <title>Visual Linux Trainer</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/theme.css" />
+        <link rel="stylesheet" href="css/animations.css" />
+        <link rel="stylesheet" href="css/layout.css" />
+        <link rel="stylesheet" href="css/sidebar.css" />
+        <link rel="stylesheet" href="css/explorer.css" />
+        <link rel="stylesheet" href="css/terminal.css" />
+    </head>
+    <body>
+        <div id="root">
+            <!-- ═══════════ SIDEBAR ═══════════ -->
+            <div id="sidebar">
+                <div class="sb-inner">
+                    <div class="sb-topbar">
+                        <div class="logo-row">
+                            <div class="logo">
+                                <span class="logo-dot"></span>linux<span
+                                    >-trainer</span
+                                >
+                            </div>
+                            <button class="reset-btn" onclick="resetAll()">
+                                ↺ reset
+                            </button>
+                        </div>
+                        <div class="prog-meta">
+                            <span class="prog-lbl">Tiến độ</span>
+                            <span class="prog-pct" id="prog-pct">0 / 15</span>
+                        </div>
+                        <div class="prog-bar">
+                            <div
+                                class="prog-fill"
+                                id="prog-fill"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                        <div class="prog-steps" id="prog-steps"></div>
+                    </div>
+
+                    <div class="sb-body" id="sb-body"></div>
+                </div>
+
+                <div class="sb-footer">
+                    <div class="rail" id="rail"></div>
+                </div>
+            </div>
+
+            <!-- ═══════════ MAIN ═══════════ -->
+            <div id="main">
+                <!-- Explorer -->
+                <div id="explorer">
+                    <div class="exp-header">
+                        <span class="exp-title">explorer</span>
+                        <span class="exp-status st-idle" id="exp-status"
+                            >● idle</span
+                        >
+                    </div>
+                    <div class="breadcrumb" id="breadcrumb"></div>
+                    <div class="file-grid" id="file-grid"></div>
+                </div>
+
+                <!-- Terminal output -->
+                <div id="terminal-area">
+                    <div class="term-label">terminal</div>
+                    <div id="term-output"></div>
+                </div>
+
+                <!-- Input -->
+                <div id="input-bar">
+                    <div id="input-inner">
+                        <span class="prompt-str" id="prompt-str"></span>
+                        <input
+                            id="cmd-input"
+                            type="text"
+                            placeholder="nhập lệnh rồi nhấn Enter…"
+                            autocomplete="off"
+                            spellcheck="false"
+                        />
+                        <span class="enter-hint"
+                            ><span class="enter-key">Enter</span></span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="module">
+            import { pathString } from './js/engine/fs.js';
+            import { execute } from './js/engine/executor.js';
+            import { addLine, clearTerminal, renderPrompt } from './js/ui/terminal.js';
+            import { setHL, renderExplorer } from './js/ui/explorer.js';
+            import { renderSidebar, renderRail } from './js/ui/sidebar.js';
+
+            /* ══════ DATA ══════ */
+            const LESSONS = [
+                {
+                    id: 1,
+                    title: "Xem bạn đang đứng ở đâu",
+                    instruction:
+                        "Gõ <code>pwd</code> để in ra thư mục hiện tại.",
+                    expected: "pwd",
+                    hint: "pwd = Print Working Directory",
+                    before: "Nhìn thanh breadcrumb bên trên — lệnh sẽ in ra đúng đường dẫn đó.",
+                    success:
+                        "pwd luôn cho bạn biết vị trí hiện tại trong cây thư mục.",
+                },
+                {
+                    id: 2,
+                    title: "Xem folder hiện tại có gì",
+                    instruction:
+                        "Gõ <code>ls</code> để liệt kê nội dung thư mục.",
+                    expected: "ls",
+                    hint: "ls = list",
+                    before: "Explorer bên trên đang cho thấy các file — lệnh sẽ in ra y như vậy.",
+                    success:
+                        "Bạn đã nối được hình minh hoạ và output terminal với nhau.",
+                },
+                {
+                    id: 3,
+                    title: "Đi vào thư mục docs",
+                    instruction: "Gõ <code>cd docs</code> để chuyển vào docs.",
+                    expected: "cd docs",
+                    hint: "cd = Change Directory",
+                    before: "Sau khi cd, breadcrumb và Explorer sẽ cập nhật theo.",
+                    success: "cd đổi thư mục làm việc hiện tại.",
+                },
+                {
+                    id: 4,
+                    title: "Kiểm tra vị trí mới",
+                    instruction: "Gõ <code>pwd</code> sau khi dùng cd.",
+                    expected: "pwd",
+                    hint: "Kết quả phải kết thúc bằng /docs",
+                    before: "So sánh breadcrumb với output terminal.",
+                    success:
+                        "Bạn đang xác minh sự thay đổi của current directory.",
+                },
+                {
+                    id: 5,
+                    title: "Tạo file mới",
+                    instruction: "Gõ <code>touch todo.txt</code> để tạo file.",
+                    expected: "touch todo.txt",
+                    hint: "touch + tên file tạo file rỗng",
+                    before: "Sau khi tạo, Explorer sẽ hiện file mới với hiệu ứng.",
+                    success: "File todo.txt xuất hiện ngay trong thư mục docs.",
+                },
+                {
+                    id: 6,
+                    title: "Liệt kê để thấy file mới",
+                    instruction:
+                        "Gõ <code>ls</code> để xem todo.txt đã có chưa.",
+                    expected: "ls",
+                    hint: "List lại sau khi tạo file",
+                    before: "Đối chiếu icon trong Explorer với output terminal.",
+                    success: "ls phản ánh trạng thái mới nhất của thư mục.",
+                },
+                {
+                    id: 7,
+                    title: "Tạo thư mục con",
+                    instruction: "Gõ <code>mkdir assets</code> để tạo folder.",
+                    expected: "mkdir assets",
+                    hint: "mkdir = make directory",
+                    before: "Sau khi chạy, folder mới sẽ xuất hiện trong Explorer.",
+                    success: "Bạn vừa tạo một thư mục mới bằng terminal.",
+                },
+                {
+                    id: 8,
+                    title: "Xem lại nội dung thư mục",
+                    instruction:
+                        "Gõ <code>ls</code> — cần thấy cả assets và todo.txt.",
+                    expected: "ls",
+                    hint: "List sau khi có folder mới",
+                    before: "Mục tiêu là thấy cả 2 item trong Explorer và terminal.",
+                    success: "Terminal và Explorer đang khớp hoàn toàn.",
+                },
+                {
+                    id: 9,
+                    title: "Đi vào thư mục assets",
+                    instruction: "Gõ <code>cd assets</code> để mở thư mục.",
+                    expected: "cd assets",
+                    hint: "cd assets",
+                    before: "assets đang rỗng — Explorer sẽ cập nhật khi bạn vào.",
+                    success: "Bạn đã bước vào một thư mục con mới.",
+                },
+                {
+                    id: 10,
+                    title: "Tạo file trong assets",
+                    instruction: "Gõ <code>touch logo.png</code>.",
+                    expected: "touch logo.png",
+                    hint: "touch logo.png",
+                    before: "Explorer sẽ hiện file mới bên trong assets.",
+                    success: "Bây giờ assets không còn rỗng nữa.",
+                },
+                {
+                    id: 11,
+                    title: "Xem file vừa tạo",
+                    instruction: "Gõ <code>ls</code> để liệt kê logo.png.",
+                    expected: "ls",
+                    hint: "ls trong assets",
+                    before: "Quan sát icon và so với output terminal.",
+                    success:
+                        "Bạn đang đọc cấu trúc thư mục bằng cả hình và lệnh.",
+                },
+                {
+                    id: 12,
+                    title: "Quay lại thư mục cha",
+                    instruction: "Gõ <code>cd ..</code> để về docs.",
+                    expected: "cd ..",
+                    hint: ".. = thư mục cha",
+                    before: "Explorer sẽ hiện lại todo.txt và assets sau khi về.",
+                    success: "cd .. giúp quay về thư mục cha.",
+                },
+                {
+                    id: 13,
+                    title: "Xác nhận vị trí sau cd ..",
+                    instruction: "Gõ <code>pwd</code> — kết quả phải là /docs.",
+                    expected: "pwd",
+                    hint: "Xác minh sau khi di chuyển",
+                    before: "Đây là bước xác minh — breadcrumb và terminal phải khớp.",
+                    success: "Chính xác. Bạn đã quay về đúng nơi.",
+                },
+                {
+                    id: 14,
+                    title: "Xem tổng quan thư mục docs",
+                    instruction: "Gõ <code>ls</code> để xem docs hiện có gì.",
+                    expected: "ls",
+                    hint: "Phải có assets và todo.txt",
+                    before: "Explorer cho thấy cấu trúc cuối cùng của docs.",
+                    success:
+                        "Bạn đã hiểu cách terminal phản ánh trạng thái thư mục.",
+                },
+                {
+                    id: 15,
+                    title: "Hoàn thành mini lab",
+                    instruction: "Gõ <code>pwd</code> lần cuối để kết thúc.",
+                    expected: "pwd",
+                    hint: "Kết thúc bằng kiểm tra current directory",
+                    before: "Bài cuối — chốt lại khái niệm current directory.",
+                    success: "Xong! Bạn đã hoàn thành Visual Linux Trainer 🎉",
+                },
+            ];
+
+            const INIT_FS = {
+                name: "home",
+                type: "folder",
+                children: [
+                    {
+                        name: "student",
+                        type: "folder",
+                        children: [
+                            {
+                                name: "docs",
+                                type: "folder",
+                                children: [
+                                    { name: "welcome.txt", type: "file" },
+                                    { name: "notes.md", type: "file" },
+                                ],
+                            },
+                            {
+                                name: "projects",
+                                type: "folder",
+                                children: [
+                                    { name: "roadmap.txt", type: "file" },
+                                ],
+                            },
+                            { name: "avatar.png", type: "file" },
+                        ],
+                    },
+                ],
+            };
+
+            /* ══════ STATE ══════ */
+            let fs, path, lessonIdx, showHint, hlMode, lastCreated, lastSuccess;
+
+            function init() {
+                fs = JSON.parse(JSON.stringify(INIT_FS));
+                path = ["student"];
+                lessonIdx = 0;
+                showHint = false;
+                hlMode = "idle";
+                lastCreated = null;
+                lastSuccess = null;
+            }
+
+
+            /* ══════ HANDLE COMMAND ══════ */
+            function handleCommand(raw) {
+                const result = execute(raw, fs, path, LESSONS, lessonIdx);
+                if (!result) return;
+
+                if (result.sideEffect === "clear") {
+                    clearTerminal();
+                    return;
+                }
+
+                result.terminalLines.forEach((l) => addLine(l.cls, l.text));
+
+                fs = result.newFs;
+                path = result.newPath;
+                lastCreated = result.lastCreated;
+                hlMode = result.highlight || "idle";
+
+                setHL(hlMode);
+                renderExplorer(fs, path, hlMode, lastCreated);
+                renderPrompt(pathString(path) + " $");
+
+                if (result.lessonPassed) {
+                    lastSuccess = LESSONS[lessonIdx].success;
+                    showHint = false;
+                    lessonIdx = Math.min(lessonIdx + 1, LESSONS.length);
+                    renderSidebar(LESSONS, lessonIdx, showHint, lastSuccess);
+                    renderRail(LESSONS, lessonIdx);
+                    setTimeout(() => {
+                        lastSuccess = null;
+                        renderSidebar(LESSONS, lessonIdx, showHint, lastSuccess);
+                    }, 2500);
+                }
+            }
+
+            function toggleHint() {
+                showHint = !showHint;
+                renderSidebar(LESSONS, lessonIdx, showHint, lastSuccess);
+            }
+
+            function resetAll() {
+                init();
+                clearTerminal();
+                setHL("idle");
+                renderExplorer(fs, path, hlMode, lastCreated);
+                renderPrompt(pathString(path) + " $");
+                renderSidebar(LESSONS, lessonIdx, showHint, lastSuccess);
+                renderRail(LESSONS, lessonIdx);
+                addLine("sys", "Demo reset — bắt đầu lại từ bài 1.");
+            }
+
+            /* ══════ INPUT ══════ */
+            document
+                .getElementById("cmd-input")
+                .addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") {
+                        const val = e.target.value;
+                        if (val.trim()) {
+                            handleCommand(val);
+                            e.target.value = "";
+                        }
+                    }
+                });
+
+            /* expose to global scope for inline onclick */
+            window.resetAll = resetAll;
+            window.toggleHint = toggleHint;
+
+            /* ══════ BOOT ══════ */
+            init();
+            setHL("idle");
+            renderExplorer(fs, path, hlMode, lastCreated);
+            renderPrompt(pathString(path) + " $");
+            renderSidebar(LESSONS, lessonIdx, showHint, lastSuccess);
+            renderRail(LESSONS, lessonIdx);
+
+            addLine("sys", "Chào mừng đến với Visual Linux Trainer!");
+            addLine(
+                "sys",
+                "Làm theo hướng dẫn ở sidebar — gõ lệnh bên dưới rồi nhấn Enter.",
+            );
+            addLine(
+                "sys",
+                'Gõ <span style="color:var(--cyan)">help</span> để xem danh sách lệnh.',
+            );
+        </script>
+    </body>
+</html>

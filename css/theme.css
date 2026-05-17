@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #ffffff;
+    --bg2: #ede9e8;
+    --bg3: #f5f2f1;
+    --bg4: #faf8f7;
+    --line: #c8c0bc;
+    --line2: #b4a8a4;
+    --line3: #9c8c88;
+
+    --text: #2d0f14;
+    --text2: #64242f;
+    --text3: #9b6870;
+    --text4: #b89498;
+
+    --green: #b44446;
+    --green2: #9c3638;
+    --green3: #fce8e8;
+    --green-bg: rgba(180, 68, 70, 0.08);
+
+    --blue: #fc8f8f;
+    --blue2: #e87272;
+    --blue-bg: rgba(252, 143, 143, 0.12);
+
+    --amber: #c07040;
+    --amber2: #a05c30;
+    --amber-bg: rgba(192, 112, 64, 0.08);
+
+    --violet: #64242f;
+    --violet2: #4d1a22;
+    --violet-bg: rgba(100, 36, 47, 0.08);
+
+    --cyan: #fc8f8f;
+    --red: #c0302c;
+    --red-bg: rgba(192, 48, 44, 0.08);
+
+    --r: 10px;
+    --r2: 16px;
+    --r3: 22px;
+
+    --mono: "Montserrat", sans-serif;
+    --sans: "Montserrat", sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+}
+
+a {
+    color: var(--text);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--text2);
+}

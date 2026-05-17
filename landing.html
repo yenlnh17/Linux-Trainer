@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <title>Linux Command — Học Linux trong trình duyệt</title>
+
+        <link rel="apple-touch-icon" sizes="57x57" href="Favicon/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="Favicon/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="Favicon/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="Favicon/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="Favicon/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="Favicon/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="Favicon/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="Favicon/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="Favicon/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="Favicon/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="Favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="Favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="Favicon/favicon-16x16.png" />
+        <link rel="manifest" href="Favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#280C10" />
+        <meta name="msapplication-TileImage" content="Favicon/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#280C10" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/theme.css" />
+        <link rel="stylesheet" href="css/animations.css" />
+        <link rel="stylesheet" href="css/landing.css" />
+
+        <script
+            src="https://accounts.google.com/gsi/client"
+            async
+            onload="if (window._onGisLoad) window._onGisLoad();"
+        ></script>
+    </head>
+    <body>
+        <!-- ═══════════ NAV ═══════════ -->
+        <header class="lnd-nav">
+            <a class="lnd-nav-brand" href="landing.html">
+                <img src="Logo.png" alt="" class="lnd-nav-logo" />
+                <span class="lnd-nav-name">Linux Command</span>
+            </a>
+            <div id="gsi-btn-nav" class="lnd-nav-gsi"></div>
+        </header>
+
+        <!-- ═══════════ HERO ═══════════ -->
+        <section class="lnd-hero">
+            <div class="lnd-hero-cols">
+                <div class="lnd-hero-content">
+                    <div class="lnd-hero-badge">
+                        Miễn phí · Không cần cài đặt
+                    </div>
+                    <h1 class="lnd-hero-h1">
+                        Học Linux<br />
+                        <span class="lnd-hero-accent"
+                            >ngay trong trình&nbsp;duyệt</span
+                        >
+                    </h1>
+                    <p class="lnd-hero-sub">
+                        Không cần máy ảo. Không cần terminal thật.<br />
+                        Bắt đầu học lệnh Linux từ hôm nay — hoàn toàn miễn phí.
+                    </p>
+                </div>
+
+                <div class="lnd-hero-visual">
+                    <div class="hero-term">
+                        <div class="ht-bar">
+                            <span class="ht-dot ht-red"></span>
+                            <span class="ht-dot ht-yellow"></span>
+                            <span class="ht-dot ht-green"></span>
+                            <span class="ht-bar-label"
+                                >terminal — student@linux</span
+                            >
+                        </div>
+                        <div class="ht-body">
+                            <div id="hero-term-lines"></div>
+                            <div class="ht-cursor-row">
+                                <span class="ht-ps">$ </span>
+                                <span class="ht-blink">▌</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ STATS ═══════════ -->
+        <div class="lnd-stats">
+            <div class="lnd-inner lnd-stats-inner">
+                <div class="lnd-stat">
+                    <span class="lnd-stat-n">10</span>
+                    <span class="lnd-stat-l">Mô-đun</span>
+                </div>
+                <span class="lnd-stat-div"></span>
+                <div class="lnd-stat">
+                    <span class="lnd-stat-n">150+</span>
+                    <span class="lnd-stat-l">Bài học</span>
+                </div>
+                <span class="lnd-stat-div"></span>
+                <div class="lnd-stat">
+                    <span class="lnd-stat-n">0đ</span>
+                    <span class="lnd-stat-l">Hoàn toàn miễn phí</span>
+                </div>
+                <span class="lnd-stat-div"></span>
+                <div class="lnd-stat">
+                    <span class="lnd-stat-n">100%</span>
+                    <span class="lnd-stat-l">Trên trình duyệt</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ HOW IT WORKS ═══════════ -->
+        <section class="lnd-how">
+            <div class="lnd-inner">
+                <div class="lnd-label">Cách hoạt động</div>
+                <h2 class="lnd-h2">Ba bước để thành thạo Linux</h2>
+                <div class="lnd-steps">
+                    <div class="lnd-step">
+                        <div class="lnd-step-n">01</div>
+                        <div class="lnd-step-icon">📖</div>
+                        <h3 class="lnd-step-h">Đọc giải thích</h3>
+                        <p class="lnd-step-p">
+                            Mỗi bài học bắt đầu bằng hướng dẫn ngắn gọn, dễ hiểu
+                            về lệnh sắp thực hành.
+                        </p>
+                    </div>
+                    <div class="lnd-step-arr">→</div>
+                    <div class="lnd-step">
+                        <div class="lnd-step-n">02</div>
+                        <div class="lnd-step-icon">⌨️</div>
+                        <h3 class="lnd-step-h">Gõ lệnh thực tế</h3>
+                        <p class="lnd-step-p">
+                            Nhập lệnh vào terminal giả lập ngay trong
+                            trình&nbsp;duyệt — không cần cài đặt gì thêm.
+                        </p>
+                    </div>
+                    <div class="lnd-step-arr">→</div>
+                    <div class="lnd-step">
+                        <div class="lnd-step-n">03</div>
+                        <div class="lnd-step-icon">✅</div>
+                        <h3 class="lnd-step-h">Thấy kết quả ngay</h3>
+                        <p class="lnd-step-p">
+                            File explorer và terminal cập nhật trực tiếp theo
+                            từng lệnh bạn thực thi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ MODULES ═══════════ -->
+        <section class="lnd-modules">
+            <div class="lnd-inner">
+                <div class="lnd-label">Lộ trình học tập</div>
+                <h2 class="lnd-h2">10 Mô-đun từ cơ bản đến nâng&nbsp;cao</h2>
+                <div class="lnd-mod-grid" id="lnd-mod-grid"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════ WHY ═══════════ -->
+        <section class="lnd-why">
+            <div class="lnd-inner">
+                <div class="lnd-label">Tại sao nên học?</div>
+                <h2 class="lnd-h2">
+                    Linux — Kỹ năng nền tảng của mọi lập trình viên
+                </h2>
+                <div class="lnd-why-cards">
+                    <div class="lnd-why-card">
+                        <div class="lnd-why-icon">🖥️</div>
+                        <h3>Thiết yếu cho DevOps</h3>
+                        <p>
+                            Hơn 96% web server thế giới chạy trên Linux. Thành
+                            thạo Linux là điều kiện tiên quyết để làm việc với
+                            server, Docker và Kubernetes.
+                        </p>
+                    </div>
+                    <div class="lnd-why-card">
+                        <div class="lnd-why-icon">⚡</div>
+                        <h3>Tăng năng suất làm việc</h3>
+                        <p>
+                            Một dòng lệnh có thể làm được việc mà GUI mất hàng
+                            phút. Biết Linux giúp bạn tự động hóa công việc lặp
+                            đi lặp lại.
+                        </p>
+                    </div>
+                    <div class="lnd-why-card">
+                        <div class="lnd-why-icon">🎯</div>
+                        <h3>Học qua thực hành</h3>
+                        <p>
+                            Không chỉ đọc lý thuyết — bạn gõ lệnh thật, thấy kết
+                            quả thật ngay lập tức trong môi trường an toàn.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ CTA ═══════════ -->
+        <section class="lnd-cta">
+            <div class="lnd-inner lnd-cta-inner">
+                <h2 class="lnd-cta-h2">Sẵn sàng bắt đầu hành&nbsp;trình?</h2>
+                <p class="lnd-cta-p">
+                    Đăng nhập bằng Google và bắt đầu học ngay — MIỄN PHÍ hoàn
+                    toàn!
+                </p>
+            </div>
+        </section>
+
+        <!-- ═══════════ FOOTER ═══════════ -->
+        <footer class="lnd-footer">
+            <div class="lnd-inner lnd-footer-inner">
+                <div class="lnd-footer-brand">
+                    <img src="Logo.png" alt="" class="lnd-footer-logo" />
+                    <span class="lnd-footer-name">Linux Command</span>
+                </div>
+                <span class="lnd-footer-copy"
+                    >© 2026 Linux Command. Học Linux miễn phí.</span
+                >
+            </div>
+        </footer>
+
+        <script type="module" src="js/landing.js"></script>
+    </body>
+</html>

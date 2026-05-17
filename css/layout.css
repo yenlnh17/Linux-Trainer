@@ -1,0 +1,42 @@
+#root {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    grid-template-rows: 100vh;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#main {
+    display: grid;
+    grid-template-rows: auto 1fr 60px;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+@media (max-width: 900px) {
+    #root {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        height: auto;
+        overflow-x: hidden;
+    }
+    #sidebar {
+        max-height: none;
+        height: auto;
+        overflow: visible;
+    }
+    #sidebar::after {
+        display: none;
+    }
+    html, body {
+        height: auto;
+        overflow-x: hidden;
+    }
+    body {
+        overflow-y: auto;
+    }
+    #main {
+        height: auto;
+        grid-template-rows: auto minmax(160px, 32vh) 52px;
+    }
+}

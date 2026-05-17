@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <title>Linux Command — Học Linux trong trình duyệt</title>
+
+        <link rel="apple-touch-icon" sizes="57x57" href="Favicon/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="Favicon/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="Favicon/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="Favicon/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="Favicon/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="Favicon/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="Favicon/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="Favicon/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="Favicon/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="Favicon/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="Favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="Favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="Favicon/favicon-16x16.png" />
+        <link rel="manifest" href="Favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#280C10" />
+        <meta name="msapplication-TileImage" content="Favicon/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#280C10" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/theme.css" />
+        <link rel="stylesheet" href="css/animations.css" />
+        <link rel="stylesheet" href="css/nav.css" />
+        <link rel="stylesheet" href="css/dashboard.css" />
+    </head>
+    <body>
+        <div id="app-layout">
+
+            <!-- ═══════════ NAV SIDEBAR ═══════════ -->
+            <nav id="app-nav">
+                <a class="nav-brand" href="index.html">
+                    <h1 class="nav-logo-h1">
+                        <img class="nav-logo-img" src="Logo.png" alt="Linux Command" />
+                    </h1>
+                    <div class="nav-brand-text">
+                        <span class="nav-brand-name">Linux Command</span>
+                        <span class="nav-brand-sub">Học qua trình duyệt</span>
+                    </div>
+                </a>
+
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            <span class="nav-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                                </svg>
+                            </span>
+                            Trang chủ
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lessons.html">
+                            <span class="nav-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z"/>
+                                </svg>
+                            </span>
+                            Bài học
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-bottom">
+                    <button class="nav-logout">
+                        <span class="nav-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+                            </svg>
+                        </span>
+                        Đăng xuất
+                    </button>
+                </div>
+            </nav>
+
+            <!-- ═══════════ DASHBOARD ═══════════ -->
+            <main id="page-content" class="dashboard">
+
+                <!-- Progress hero -->
+                <section class="dash-hero">
+                    <div class="dash-hero-title">Tiến độ học tập</div>
+                    <div class="dash-hero-sub">Bắt đầu hành trình học lệnh Linux của bạn.</div>
+                    <div class="dash-overall-bar">
+                        <div class="dash-overall-fill" id="dash-overall-fill" style="width:0%"></div>
+                    </div>
+                    <div class="dash-overall-stat">
+                        <span id="dash-stat">0 / 0 bài học hoàn thành</span>
+                        <a href="lessons.html">Xem tất cả bài học →</a>
+                    </div>
+                </section>
+
+                <!-- Up next -->
+                <section class="dash-next">
+                    <div class="dash-section-hd">
+                        <h3>Bài học tiếp theo</h3>
+                        <a class="dash-all-link" href="lessons.html">Tất cả bài học →</a>
+                    </div>
+                    <div class="dash-card-row" id="dash-next-cards"></div>
+                </section>
+
+            </main>
+        </div>
+
+        <script type="module" src="js/dashboard.js"></script>
+    </body>
+</html>
