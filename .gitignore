@@ -3,6 +3,9 @@
 color.avif
 hacksplaining.com_.png
 
+# API keys
+js/config.js
+
 # OS
 .DS_Store
 Thumbs.db

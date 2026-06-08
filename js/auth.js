@@ -1,6 +1,6 @@
-const USER_KEY = "vlt_user_v1";
+import { GOOGLE_CLIENT_ID as CLIENT_ID } from './config.js';
 
-export const CLIENT_ID = "165843933297-pvrhukjk73oqf9jcfsmfc73lfu2lm0hj.apps.googleusercontent.com";
+const USER_KEY = "vlt_user_v1";
 
 export function getUser() {
     try {
