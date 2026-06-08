@@ -1,4 +1,5 @@
-import { CLIENT_ID, saveUser, decodeJwt, getUser } from './auth.js';
+import { GOOGLE_CLIENT_ID as CLIENT_ID } from './config.js';
+import { saveUser, decodeJwt, getUser } from './auth.js';
 
 if (getUser()) window.location.href = "index.html";
 
