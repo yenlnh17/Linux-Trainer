@@ -49,16 +49,16 @@ function typeTick() {
 
 // ── Module grid ───────────────────────────────────────────────────────────────
 const MODS = [
-    { n: 1,  icon: '🗺️',  title: 'Điều hướng',           cmds: 'pwd · ls · cd' },
-    { n: 2,  icon: '📁',  title: 'Thao tác File',         cmds: 'touch · mkdir · rm · cp · mv' },
-    { n: 3,  icon: '🔗',  title: 'Text & Pipes',          cmds: 'grep · head · tail · | · >' },
-    { n: 4,  icon: '📊',  title: 'Xử lý Text',            cmds: 'wc · sort · uniq · cut' },
-    { n: 5,  icon: '🔍',  title: 'Tìm kiếm',              cmds: 'find · which · whereis' },
-    { n: 6,  icon: '🔐',  title: 'Phân quyền',            cmds: 'ls -l · chmod · chown' },
-    { n: 7,  icon: '⚙️',  title: 'Tiến trình',            cmds: 'ps · kill · ps aux' },
-    { n: 8,  icon: '✏️',  title: 'Chỉnh sửa Văn bản',    cmds: 'sed · tr · tee' },
-    { n: 9,  icon: '📡',  title: 'Thông tin Hệ thống',   cmds: 'id · uptime · free · df · man' },
-    { n: 10, icon: '🔗',  title: 'Liên kết & Nâng cao',  cmds: 'ln -s · file · top · killall' },
+    { n: 1,  icon: '<i class="fa-solid fa-terminal"></i>',  title: 'Điều hướng',           cmds: 'pwd · ls · cd' },
+    { n: 2,  icon: '<i class="fa-solid fa-folder"></i>',  title: 'Thao tác File',         cmds: 'touch · mkdir · rm · cp · mv' },
+    { n: 3,  icon: '<i class="fa-solid fa-link"></i>',  title: 'Text & Pipes',          cmds: 'grep · head · tail · | · >' },
+    { n: 4,  icon: '<i class="fa-solid fa-chart-bar"></i>',  title: 'Xử lý Text',            cmds: 'wc · sort · uniq · cut' },
+    { n: 5,  icon: '<i class="fa-solid fa-search"></i>',  title: 'Tìm kiếm',              cmds: 'find · which · whereis' },
+    { n: 6,  icon: '<i class="fa-solid fa-lock"></i>',  title: 'Phân quyền',            cmds: 'ls -l · chmod · chown' },
+    { n: 7,  icon: '<i class="fa-solid fa-tasks"></i>',  title: 'Tiến trình',            cmds: 'ps · kill · ps aux' },
+    { n: 8,  icon: '<i class="fa-solid fa-pencil"></i>',  title: 'Chỉnh sửa Văn bản',    cmds: 'sed · tr · tee' },
+    { n: 9,  icon: '<i class="fa-solid fa-satellite"></i>',  title: 'Thông tin Hệ thống',   cmds: 'id · uptime · free · df · man' },
+    { n: 10, icon: '<i class="fa-solid fa-link"></i>',  title: 'Liên kết & Nâng cao',  cmds: 'ln -s · file · top · killall' },
 ];
 
 // ── GIS init ──────────────────────────────────────────────────────────────────
